@@ -140,8 +140,10 @@ const DrawerMenuItem = ({ item: itemProp }) => {
 
   console.log(itemProp)
 
-  const handleClick = () => {
+  const handleClick = event => {
     setExpanded(!expanded)
+
+    event.stopPropagation()
   }
 
   return (
