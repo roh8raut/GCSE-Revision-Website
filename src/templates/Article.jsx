@@ -10,6 +10,8 @@ import { H1, Subtitle1 } from "../components/EasyText"
 import Breadcrumbs from "../components/Breadcrumbs"
 import SEO from "../components/seo"
 
+import ArticleTOC from "./ArticleTOC"
+
 String.prototype.trimRight = function(charlist) {
   if (charlist === undefined) charlist = "s"
 
@@ -84,6 +86,7 @@ const Article = props => {
       <Subtitle1 align="right" style={{ marginBottom: theme.spacing(6) }}>
         Published {post.frontmatter.date}
       </Subtitle1>
+      <ArticleTOC headings={post.headings} />
       <Markdown src={post.rawMarkdownBody} />
     </Layout>
   )
@@ -111,6 +114,10 @@ export const query = graphql`
       }
       rawMarkdownBody
       excerpt
+      headings {
+        value
+        depth
+      }
     }
   }
 `
